@@ -9,7 +9,7 @@
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
 Version:	1.2.1
-Release:	1
+Release:	2
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://mate-desktop.org
@@ -45,12 +45,12 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xau)
 BuildRequires:	pkgconfig(xrandr)
 
-Requires:	mate-session
-Requires:	mate-desktop
-Requires:	polkit-mate
-Requires:	mate-menus
-#Requires:	gnome-screensaver
 Requires:	desktop-common-data
+Requires:	mate-session-manager
+Requires:	mate-desktop
+Requires:	mate-menus
+Requires:	mate-screensaver
+Requires:	polkit-mate
 
 Suggests:	mate-applets
 
