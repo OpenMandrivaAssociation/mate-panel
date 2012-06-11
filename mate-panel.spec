@@ -129,11 +129,11 @@ cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 %{_sysconfdir}/mateconf/schemas/workspace-switcher.schemas
 %{_bindir}/*
 %{_libdir}/mate-panel/modules/libmate-panel-applets-matecomponent.so
-%{_libexecdir}/mate-panel-add
-%{_libexecdir}/clock-applet
-%{_libexecdir}/fish-applet
-%{_libexecdir}/notification-area-applet
-%{_libexecdir}/wnck-applet
+%{_libexecdir}/mate-applets/mate-panel-add
+%{_libexecdir}/mate-applets/clock-applet
+%{_libexecdir}/mate-applets/fish-applet
+%{_libexecdir}/mate-applets/notification-area-applet
+%{_libexecdir}/mate-applets/wnck-applet
 %{_datadir}/applications/*.desktop
 %{_datadir}/dbus-1/services/org.mate.panel.applet.ClockAppletFactory.service
 %{_datadir}/dbus-1/services/org.mate.panel.applet.FishAppletFactory.service
