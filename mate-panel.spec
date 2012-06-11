@@ -9,7 +9,7 @@
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
 Version:	1.2.1
-Release:	2
+Release:	3
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://mate-desktop.org
@@ -98,6 +98,7 @@ Panel libraries and header files for creating MATE panels.
 NOCONFIGURE=yes ./autogen.sh
 %configure2_5x \
 	--disable-static \
+	--libexecdir=/usr/lib/mate-applets \
 	--enable-introspection  \
 	--enable-matecomponent  \
 	--disable-scrollkeeper \
