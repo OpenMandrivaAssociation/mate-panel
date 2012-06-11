@@ -98,7 +98,7 @@ Panel libraries and header files for creating MATE panels.
 NOCONFIGURE=yes ./autogen.sh
 %configure2_5x \
 	--disable-static \
-	--libexecdir=/usr/lib/mate-applets \
+	--libexecdir=%{_libexecdir}/mate-applets \
 	--enable-introspection  \
 	--enable-matecomponent  \
 	--disable-scrollkeeper \
