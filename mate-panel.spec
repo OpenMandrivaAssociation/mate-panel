@@ -8,12 +8,12 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.2.1
-Release:	3
+Version:	1.4.0
+Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/1.2/%{name}-%{version}.tar.xz
+Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
 
 BuildRequires:	docbook-dtd412-xml
@@ -33,6 +33,7 @@ BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(libcanberra-gtk)
 #BuildRequires:	pkgconfig(libedataserverui-1.0)
 BuildRequires:	pkgconfig(libmatecomponentui-2.0)
+BuildRequires:	pkgconfig(libmatewnck)
 BuildRequires:	pkgconfig(libmate-menu)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libwnck-1.0)
@@ -82,10 +83,10 @@ GObject Introspection interface description for %{name}.
 %package -n	%{devname}
 Summary:	Development libraries, include files for MATE panel
 Group:		Development/C
-Provides:	%{name}-devel = %{version}-%{release}
-Requires:	%{libname} = %{version}-%{release}
-Requires:	%{libname2} = %{version}-%{release}
-Requires:	%{girname} = %{version}-%{release}
+Provides:	%{name}-devel = %{EVRD}
+Requires:	%{libname} = %{EVRD}
+Requires:	%{libname2} = %{EVRD}
+Requires:	%{girname} = %{EVRD}
 
 %description -n	%{devname}
 Panel libraries and header files for creating MATE panels.
@@ -164,4 +165,3 @@ cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 %{_libdir}/libmate-panel*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/MatePanelApplet-%{girmajor}.gir
-
