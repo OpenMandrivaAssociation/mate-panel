@@ -146,8 +146,6 @@ cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 %{_datadir}/mate-2.0/ui/MATE_Panel_Popup.xml
 %{_iconsdir}/hicolor/*/apps/*
 %{_mandir}/man1/*
-# mate help files
-%{_datadir}/mate/help/*
 
 %files -n %{libname}
 %{_libdir}/libmate-panel-applet-%{api}.so.%{major}*
