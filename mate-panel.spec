@@ -13,7 +13,7 @@ Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
 URL:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/1.4/%{name}-%{version}.tar.xz
+Source0:	http://pub.mate-desktop.org/releases/%{lua: print (string.match(rpm.expand("%{version}"),"%d+.%d+"))}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
 
 BuildRequires:	docbook-dtd412-xml
@@ -163,3 +163,19 @@ cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 %{_libdir}/libmate-panel*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/MatePanelApplet-%{girmajor}.gir
+
+
+
+%changelog
+* Mon Jun 11 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.1-3
++ Revision: 804505
+- rebuild to move applets to libexecdir/mate-applets
+
+* Thu Jun 07 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.1-2
++ Revision: 803176
+- rebuild corrected reqs name for mate-session-manager
+
+* Sat Jun 02 2012 Matthew Dawkins <mattydaw@mandriva.org> 1.2.1-1
++ Revision: 802038
+- imported package mate-panel
+
