@@ -16,6 +16,7 @@ Group:		Graphical desktop/GNOME
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
+BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	mate-common
 BuildRequires:	yelp-tools
