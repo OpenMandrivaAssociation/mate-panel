@@ -9,8 +9,8 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.8.1
-Release:	2
+Version:	1.14.0
+Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://mate-desktop.org
@@ -23,13 +23,13 @@ BuildRequires:	yelp-tools
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(mateweather)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(libcanberra-gtk)
 BuildRequires:	pkgconfig(libmate-menu)
 BuildRequires:	pkgconfig(librsvg-2.0)
-BuildRequires:	pkgconfig(libwnck-1.0)
+BuildRequires:	pkgconfig(libwnck-3.0)
 BuildRequires:	pkgconfig(mate-desktop-2.0)
 BuildRequires:	pkgconfig(NetworkManager)
 BuildRequires:	pkgconfig(sm)
@@ -78,10 +78,14 @@ Panel libraries and header files for creating MATE panels.
 NOCONFIGURE=yes ./autogen.sh
 
 %build
+export CC=gcc
+export CXX=g++
 %configure \
 	--libexecdir=%{_libexecdir}/mate-applets \
 	--enable-introspection \
-	--with-in-process-applets=all
+	--with-in-process-applets=all \
+	--with-gtk=3.0 \
+	--enable-compile-warnings=no
 
 %make
 
