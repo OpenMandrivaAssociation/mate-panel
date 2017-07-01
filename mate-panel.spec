@@ -9,13 +9,14 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.14.0
+Version:	1.18.3
 Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/GNOME
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
+
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	mate-common
@@ -43,6 +44,11 @@ Requires:	mate-menus
 Requires:	mate-screensaver
 Requires:	polkit-mate
 Suggests:	mate-applets
+
+#for fish
+#Requires:	fortune-mod
+# rhbz (#1007219)
+#Requires:	caja-schemas
 
 %description
 The MATE panel packages provides the mate panel, menus and some
@@ -78,29 +84,25 @@ Panel libraries and header files for creating MATE panels.
 NOCONFIGURE=yes ./autogen.sh
 
 %build
-export CC=gcc
-export CXX=g++
 %configure \
 	--libexecdir=%{_libexecdir}/mate-applets \
 	--enable-introspection \
 	--with-in-process-applets=all \
-	--with-gtk=3.0 \
-	--enable-compile-warnings=no
-
+	--enable-compile-warnings=no \
+	%{nil}
 %make
 
 %install
 %makeinstall_std
 
-# remove unneeded converters
-rm -fr %{buildroot}%{_datadir}/MateConf
-
-%find_lang %{name}-%{gimajor} --with-gnome --all-name
-
+# add mandriva panel
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 
-%files -f %{name}-%{gimajor}.lang
+# locales
+%find_lang %{name} --with-gnome --all-name
+
+%files -f %{name}.lang
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/mate-desktop-item-edit
 %{_bindir}/mate-panel
