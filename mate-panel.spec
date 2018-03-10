@@ -11,10 +11,10 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.18.3
+Version:	1.18.7
 Release:	1
 License:	GPLv2+ and LGPLv2+
-Group:		Graphical desktop/GNOME
+Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
