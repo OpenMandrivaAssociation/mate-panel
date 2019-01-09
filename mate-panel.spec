@@ -11,7 +11,7 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.20.0
+Version:	1.20.4
 Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
@@ -142,7 +142,7 @@ based on %{name}.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 #NOCONFIGURE=yes ./autogen.sh
@@ -153,10 +153,10 @@ based on %{name}.
 	--libexecdir=%{_libexecdir}/mate-applets \
 	--with-in-process-applets=all \
 	%{nil}
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # add mandriva panel
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
