@@ -11,8 +11,8 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.18.7
-Release:	2
+Version:	1.18.9
+Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
@@ -24,7 +24,7 @@ BuildRequires:	mate-common
 BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	pkgconfig(dconf)
 BuildRequires:	pkgconfig(gio-2.0)
-BuildRequires:	pkgconfig(gdk-pixbuf-2.0) 
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0)
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
@@ -164,4 +164,3 @@ cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 
 # locales
 %find_lang %{name} --with-gnome --all-name
-
