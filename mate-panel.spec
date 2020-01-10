@@ -11,7 +11,7 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.22.1
+Version:	1.22.2
 Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
@@ -36,7 +36,6 @@ BuildRequires:	pkgconfig(libmate-menu)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libwnck-3.0)
 BuildRequires:	pkgconfig(mate-desktop-2.0)
-BuildRequires:	pkgconfig(NetworkManager)
 BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(x11)
