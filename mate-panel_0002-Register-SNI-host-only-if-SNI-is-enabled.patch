@@ -1,0 +1,38 @@
+From 99c9b93a5fa3cee376d01bec0affc46424301542 Mon Sep 17 00:00:00 2001
+From: Ilya Fedin <fedin-ilja2010@ya.ru>
+Date: Sun, 27 Dec 2020 09:14:58 +0400
+Subject: [PATCH 2/6] Register SNI host only if SNI is enabled
+
+This prevents duplication of tray icons
+---
+ applets/notification_area/na-grid.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/applets/notification_area/na-grid.c b/applets/notification_area/na-grid.c
+index dbd95d50..7f8162e8 100644
+--- a/applets/notification_area/na-grid.c
++++ b/applets/notification_area/na-grid.c
+@@ -318,6 +318,7 @@ na_grid_realize (GtkWidget *widget)
+   GdkScreen *screen;
+   GtkOrientation orientation;
+   NaHost *tray_host;
++  GSettings *settings = g_settings_new ("org.mate.panel");
+ 
+   GTK_WIDGET_CLASS (na_grid_parent_class)->realize (widget);
+ 
+@@ -330,7 +331,11 @@ na_grid_realize (GtkWidget *widget)
+                           G_BINDING_DEFAULT);
+ 
+   add_host (self, tray_host);
+-  add_host (self, sn_host_v0_new ());
++
++  if (g_settings_get_boolean (settings, "enable-sni-support"))
++    add_host (self, sn_host_v0_new ());
++
++  g_object_unref (settings);
+ }
+ 
+ static void
+-- 
+2.36.1
+

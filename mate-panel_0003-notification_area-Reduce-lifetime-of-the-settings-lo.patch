@@ -1,0 +1,37 @@
+From fe5d2c10b7942f07efbdca2e48363f3aeb4a9bde Mon Sep 17 00:00:00 2001
+From: Robert Antoni Buj Gelonch <rbuj@users.noreply.github.com>
+Date: Thu, 2 Jun 2022 09:38:16 +0200
+Subject: [PATCH 3/6] notification_area: Reduce lifetime of the settings local
+ variable (#1309)
+
+---
+ applets/notification_area/na-grid.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/applets/notification_area/na-grid.c b/applets/notification_area/na-grid.c
+index 7f8162e8..b7690c3c 100644
+--- a/applets/notification_area/na-grid.c
++++ b/applets/notification_area/na-grid.c
+@@ -318,7 +318,7 @@ na_grid_realize (GtkWidget *widget)
+   GdkScreen *screen;
+   GtkOrientation orientation;
+   NaHost *tray_host;
+-  GSettings *settings = g_settings_new ("org.mate.panel");
++  GSettings *settings;
+ 
+   GTK_WIDGET_CLASS (na_grid_parent_class)->realize (widget);
+ 
+@@ -332,9 +332,9 @@ na_grid_realize (GtkWidget *widget)
+ 
+   add_host (self, tray_host);
+ 
++  settings = g_settings_new ("org.mate.panel");
+   if (g_settings_get_boolean (settings, "enable-sni-support"))
+     add_host (self, sn_host_v0_new ());
+-
+   g_object_unref (settings);
+ }
+ 
+-- 
+2.36.1
+

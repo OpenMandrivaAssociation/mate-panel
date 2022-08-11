@@ -1,23 +1,31 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define api	4
-%define major	1
+%define api 4
+%define major 1
 
 %define libname	%mklibname mate-panel-applet %{api} %{major}
 %define devname %mklibname -d mate-panel-applet
 
-%define	gimajor	%{api}.0
-%define girname	%mklibname matepanelapplet-gir %{gimajor}
+%define gimajor %{api}.0
+%define girname %mklibname matepanelapplet-gir %{gimajor}
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
 Version:	1.26.2
-Release:	2
+Release:	3
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
+
+# from upstream 1.26 branch
+Patch1:		mate-panel_0001-wncklet-do-not-exceed-workspace-number-when-setting-.patch
+Patch2:		mate-panel_0002-Register-SNI-host-only-if-SNI-is-enabled.patch
+Patch3:		mate-panel_0003-notification_area-Reduce-lifetime-of-the-settings-lo.patch
+Patch4:		mate-panel_0004-wncklet-Fix-crash-thumbnailing-dying-or-otherwise-in.patch
+Patch5:		mate-panel_0005-clock-Fix-memory-leak.patch
+Patch6:		mate-panel_0006-panel-applet-Fix-leak-in-no-background-code-path.patch
 
 BuildRequires:	autoconf-archive
 BuildRequires:	intltool
@@ -43,16 +51,17 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xau)
 BuildRequires:	pkgconfig(xrandr)
 BuildRequires:	yelp-tools
+BuildRequires:	pkgconfig(wayland-client)
+BuildRequires:	pkgconfig(gtk-layer-shell-0)
 
 Requires:	caja-schemas
-Requires:	desktop-common-data
+Requires:	distro-release-desktop
 Requires:	mate-desktop
 Requires:	mate-menus
 Requires:	mate-session-manager
 Requires:	mate-screensaver
 Requires:	polkit-mate
-
-Suggests:	mate-applets
+Recommends:	mate-applets
 
 %description
 The MATE Desktop Environment is the continuation of GNOME 2. It provides an
@@ -88,16 +97,16 @@ several applets:
 %{_libdir}/%{name}/libfish-applet.so
 %{_libdir}/%{name}/libnotification-area-applet.so
 %{_libdir}/%{name}/libwnck-applet.so
-%{_mandir}/man1/mate-desktop-item-edit.1*
-%{_mandir}/man1/mate-panel.1*
+%doc %{_mandir}/man1/mate-desktop-item-edit.1*
+%doc %{_mandir}/man1/mate-panel.1*
 
 #---------------------------------------------------------------------------
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	%{summary}
 Group:		System/Libraries
 
-%description -n	%{libname}
+%description -n %{libname}
 This package contains the shared libraries used by %{name}.
 
 %files -n %{libname}
@@ -117,14 +126,14 @@ This package contains GObject Introspection interface library for %{name}.
 
 #---------------------------------------------------------------------------
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Development libraries, include files for MATE panel
 Group:		Development/C
 Provides:	%{name}-devel = %{EVRD}
 Requires:	%{libname} = %{EVRD}
 Requires:	%{girname} = %{EVRD}
 
-%description -n	%{devname}
+%description -n %{devname}
 This package contains libraries and includes files for developing programs
 based on %{name}.
 
@@ -132,7 +141,7 @@ based on %{name}.
 %doc ChangeLog
 %doc %{_datadir}/gtk-doc/html/*
 %{_bindir}/mate-panel-test-applets
-%{_mandir}/man1/mate-panel-test-applets.1*
+%doc %{_mandir}/man1/mate-panel-test-applets.1*
 %{_includedir}/*
 %{_libdir}/libmate-panel-applet-%{api}.so
 %{_libdir}/pkgconfig/*
@@ -141,8 +150,7 @@ based on %{name}.
 #---------------------------------------------------------------------------
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 #NOCONFIGURE=yes ./autogen.sh
@@ -152,7 +160,12 @@ based on %{name}.
 	--enable-gtk-doc \
 	--libexecdir=%{_libexecdir}/mate-applets \
 	--with-in-process-applets=all \
-	%{nil}
+	--enable-wayland \
+	--enable-x11
+
+# remove unused-direct-shlib-dependency
+sed -i -e 's! -shared ! -Wl,--as-needed\0!g' libtool
+
 %make_build
 
 %install
