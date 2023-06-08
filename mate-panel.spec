@@ -11,21 +11,14 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.26.2
-Release:	3
+Version:	1.26.3
+Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
 
-# from upstream 1.26 branch
-Patch1:		mate-panel_0001-wncklet-do-not-exceed-workspace-number-when-setting-.patch
-Patch2:		mate-panel_0002-Register-SNI-host-only-if-SNI-is-enabled.patch
-Patch3:		mate-panel_0003-notification_area-Reduce-lifetime-of-the-settings-lo.patch
-Patch4:		mate-panel_0004-wncklet-Fix-crash-thumbnailing-dying-or-otherwise-in.patch
-Patch5:		mate-panel_0005-clock-Fix-memory-leak.patch
-Patch6:		mate-panel_0006-panel-applet-Fix-leak-in-no-background-code-path.patch
 
 BuildRequires:	autoconf-archive
 BuildRequires:	intltool
