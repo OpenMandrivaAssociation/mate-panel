@@ -12,7 +12,7 @@
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
 Version:	1.26.3
-Release:	1
+Release:	2
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
