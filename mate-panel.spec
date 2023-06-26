@@ -19,7 +19,6 @@ Url:		http://mate-desktop.org
 Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
 Source1:	mandriva-panel.png
 
-
 BuildRequires:	autoconf-archive
 BuildRequires:	intltool
 BuildRequires:	mate-common
