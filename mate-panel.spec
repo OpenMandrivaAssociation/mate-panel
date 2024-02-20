@@ -1,23 +1,24 @@
-%define url_ver %(echo %{version}|cut -d. -f1,2)
+%define mate_ver	%(echo %{version}|cut -d. -f1,2)
 
 %define api 4
 %define major 1
 
-%define libname	%mklibname mate-panel-applet %{api} %{major}
-%define devname %mklibname -d mate-panel-applet
+%define libname %mklibname mate-panel-applet
+%define devname %mklibname mate-panel-applet -d
+%define oldlibname %mklibname mate-panel-applet 4 1
 
 %define gimajor %{api}.0
 %define girname %mklibname matepanelapplet-gir %{gimajor}
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.26.4
+Version:	1.28.0
 Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
 Url:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/%{url_ver}/%{name}-%{version}.tar.xz
-Source1:	mandriva-panel.png
+Source0:	http://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
+Source1:	om-panel.png
 
 BuildRequires:	autoconf-archive
 BuildRequires:	intltool
@@ -97,6 +98,7 @@ several applets:
 %package -n %{libname}
 Summary:	%{summary}
 Group:		System/Libraries
+Obsoletes:	%{oldlibname} < %{EVRD}
 
 %description -n %{libname}
 This package contains the shared libraries used by %{name}.
@@ -169,3 +171,4 @@ cp -a %{SOURCE1} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps
 
 # locales
 %find_lang %{name} --with-gnome --all-name
+
