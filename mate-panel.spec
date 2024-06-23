@@ -12,12 +12,12 @@
 
 Summary:	The core programs for the MATE GUI desktop environment
 Name:		mate-panel
-Version:	1.28.1
+Version:	1.28.2
 Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Graphical desktop/Other
-Url:		http://mate-desktop.org
-Source0:	http://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
+Url:		https://mate-desktop.org
+Source0:	https://pub.mate-desktop.org/releases/%{mate_ver}/%{name}-%{version}.tar.xz
 Source1:	om-panel.png
 
 BuildRequires:	autoconf-archive
